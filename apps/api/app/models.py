@@ -197,6 +197,9 @@ class Visit(SQLModel, table=True):
     status: VisitStatus = Field(default=VisitStatus.ACTIVE)
     admitted_at: datetime = Field(default_factory=_now)
     discharged_at: datetime | None = None
+    # "Stamp" of the last reasoning run — re-running only processes captures
+    # newer than this, so the agent surfaces what's NEW instead of redoing all.
+    reasoned_at: datetime | None = None
     created_at: datetime = Field(default_factory=_now)
 
 

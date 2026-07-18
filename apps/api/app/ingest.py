@@ -25,7 +25,6 @@ from .models import (
     Visit,
     VisitStatus,
 )
-from .reasoning import run_reasoning
 from .sdoh import derive_factors
 
 _DATA = Path(__file__).resolve().parent / "data" / "admissions.json"
@@ -112,7 +111,5 @@ def ingest_admissions(session: Session) -> int:
             )
         )
         session.commit()
-
-        run_reasoning(visit.id, session, use_llm=False)
 
     return len(records)

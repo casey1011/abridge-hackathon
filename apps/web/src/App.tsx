@@ -22,7 +22,7 @@ const VISIT_STATUS: Record<string, { label: string; color: string; bg: string }>
 const FINDING: Record<FindingType, { label: string; color: string; bg: string }> = {
   implicature: { label: "Implicature catch", color: "#7c3aed", bg: "#f5f3ff" },
   med_reconciliation: { label: "Med reconciliation", color: "#0891b2", bg: "#ecfeff" },
-  sdoh: { label: "SDOH lookup", color: "#c026d3", bg: "#fdf4ff" },
+  sdoh: { label: "Plan update", color: "#4f46e5", bg: "#eef2ff" },
 };
 
 const PHASE_ORDER: ChecklistPhase[] = [
@@ -161,7 +161,7 @@ function ReviewCard({
       <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
         {isImplicature && <span style={{ fontSize: 15 }}>⚠️</span>}
         <Pill
-          label={isImplicature ? "Implicature catch — from today’s Abridge transcript" : meta.label}
+          label={isImplicature ? "Implicature catch — reconciled from the transcript" : meta.label}
           color={isImplicature ? "#b45309" : meta.color}
           bg={isImplicature ? "#fef3c7" : meta.bg}
         />
