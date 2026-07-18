@@ -1,0 +1,4 @@
+plan_id,plan_name,meals_covered,benefit_trigger,duration_days,activation_channel,fulfillment_vendor
+DEMO-H0000-001,Demo Advantage Complete (synthetic),28,post inpatient discharge,28,plan care management line,Mom's Meals
+DEMO-H0000-002,Demo Advantage Basic (synthetic),0,none,0,,
+DEMO-TRADITIONAL,Traditional Medicare (no meal benefit),0,none,0,,

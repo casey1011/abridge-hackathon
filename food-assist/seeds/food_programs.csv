@@ -1,0 +1,9 @@
+program_slug,program_name,program_type,tier,medically_tailored,eligibility_notes,signup_method,signup_contact,waitlist_status,coverage_level,coverage_value,last_verified
+ma-postdischarge-meals,MA plan post-discharge meal benefit,insurance_benefit,1,true,enrolled in participating MA plan; qualifying inpatient stay,plan_care_mgmt,plan care management line on member card,open,plan,see insurance_meal_benefits,
+seniors-first-mow,Seniors First Meals on Wheels (Orange County),mow,2,false,60+ and homebound or unable to prepare meals; voluntary contribution,phone_intake,https://www.seniorsfirstinc.org,unverified,county,Orange FL,
+moms-meals-selfpay,Mom's Meals self-pay (heart-friendly menu),mtm,3,true,anyone; approx $8-9 per meal delivered; no eligibility test,online,https://www.momsmeals.com,open,national,,
+second-harvest-cfl,Second Harvest Food Bank of Central Florida,food_bank,3,false,no eligibility test at partner pantries,phone_intake,https://www.feedhopenow.org,open,county,Orange FL,
+snap-fl,SNAP (Florida ACCESS),government,3,false,income-tested; benefits usable for groceries and some delivery services,online,https://www.myflfamilies.com/services/public-assistance,open,state,FL,
+oaa-congregate,Older Americans Act congregate and home meals (Senior Resource Alliance),government,3,false,60+; administered by area agency on aging for Orange/Osceola/Seminole/Brevard,phone_intake,https://www.seniorresourcealliance.org,unverified,county,Orange FL,
+heart-of-fl-211,Heart of Florida United Way 211,referral_network,3,false,anyone; live referral to current local food resources,phone_intake,dial 211,open,county,Orange FL,
+findhelp,findhelp.com social care network,referral_network,3,false,anyone; zip-code search across food and delivery programs,online,https://www.findhelp.org,open,national,,
