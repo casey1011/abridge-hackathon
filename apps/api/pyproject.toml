@@ -1,0 +1,12 @@
+[project]
+name = "abridge-api"
+version = "0.0.0"
+description = "Abridge hackathon FastAPI backend"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.32.0",
+]
+
+[tool.uv]
+package = false

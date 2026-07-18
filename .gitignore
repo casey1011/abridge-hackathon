@@ -1,3 +1,27 @@
+# deps
 node_modules/
-.DS_Store
+.pnpm-store/
+
+# builds
+dist/
+build/
+web-build/
+.expo/
+.expo-shared/
+
+# python
+__pycache__/
+*.py[cod]
+.venv/
+apps/api/.venv/
+
+# env
 .env
+.env.*
+!.env.example
+
+# misc
+.DS_Store
+*.log
+.vscode/
+.idea/
