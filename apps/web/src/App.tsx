@@ -904,7 +904,7 @@ export default function App() {
         }}
       >
         <div style={{ display: "flex", alignItems: "baseline", gap: 10 }}>
-          <span style={{ fontSize: 17, fontWeight: 700, color: "#0f172a" }}>Abridge</span>
+          <span style={{ fontSize: 17, fontWeight: 700, color: "#0f172a" }}>Ruby</span>
           <span style={{ fontSize: 14, color: "#64748b" }}>Care Coordination</span>
         </div>
         <span style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12.5, color: "#64748b" }}>

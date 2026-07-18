@@ -159,7 +159,7 @@ export default function App() {
 
   return (
     <ScrollView style={styles.screen} contentContainerStyle={styles.content}>
-      <Text style={styles.h1}>Abridge — Ambient Capture</Text>
+      <Text style={styles.h1}>Ruby</Text>
       <Text style={styles.status}>API: {health}</Text>
 
       {/* Clinician */}

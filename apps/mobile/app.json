@@ -25,7 +25,7 @@
       [
         "expo-audio",
         {
-          "microphonePermission": "Abridge records patient encounters to create a transcript for your care team."
+          "microphonePermission": "Ruby records patient encounters to create a transcript for your care team."
         }
       ]
     ]
