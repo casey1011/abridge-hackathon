@@ -9,11 +9,11 @@ const monorepoRoot = path.resolve(projectRoot, "../..");
 
 const config = getDefaultConfig(projectRoot);
 
-config.watchFolders = [monorepoRoot];
+// Append the monorepo root to Expo's default watchFolders (don't replace them).
+config.watchFolders = [...(config.watchFolders ?? []), monorepoRoot];
 config.resolver.nodeModulesPaths = [
   path.resolve(projectRoot, "node_modules"),
   path.resolve(monorepoRoot, "node_modules"),
 ];
-config.resolver.disableHierarchicalLookup = true;
 
 module.exports = config;

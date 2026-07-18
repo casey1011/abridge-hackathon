@@ -20,6 +20,14 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      [
+        "expo-audio",
+        {
+          "microphonePermission": "Abridge records patient encounters to create a transcript for your care team."
+        }
+      ]
+    ]
   }
 }
