@@ -1,0 +1,16 @@
+med_slug,rxcui,generic_name,brand_name,drug_class,is_generic
+entresto,,sacubitril/valsartan,Entresto,ARNI,false
+jardiance,,empagliflozin,Jardiance,SGLT2,false
+farxiga,,dapagliflozin,Farxiga,SGLT2,false
+verquvo,,vericiguat,Verquvo,sGC_stimulator,false
+eliquis,,apixaban,Eliquis,DOAC,false
+xarelto,,rivaroxaban,Xarelto,DOAC,false
+carvedilol,,carvedilol,Coreg,beta_blocker,true
+metoprolol-succ,,metoprolol succinate,Toprol-XL,beta_blocker,true
+bisoprolol,,bisoprolol,Zebeta,beta_blocker,true
+spironolactone,,spironolactone,Aldactone,MRA,true
+eplerenone,,eplerenone,Inspra,MRA,true
+furosemide,,furosemide,Lasix,loop_diuretic,true
+torsemide,,torsemide,Demadex,loop_diuretic,true
+lisinopril,,lisinopril,Zestril,ACE,true
+losartan,,losartan,Cozaar,ARB,true

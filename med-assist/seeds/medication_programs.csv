@@ -1,0 +1,55 @@
+med_slug,program_slug,notes
+entresto,entresto-copay,commercial only
+entresto,novartis-pap,primary Medicare route for Entresto
+entresto,pan-hf,when HF fund open
+entresto,healthwell-cv,when CV fund open
+jardiance,jardiance-copay,commercial only
+jardiance,bi-cares,primary Medicare route for Jardiance
+jardiance,pan-hf,when HF fund open
+jardiance,healthwell-cv,when CV fund open
+farxiga,farxiga-copay,commercial only
+farxiga,azme,primary Medicare route for Farxiga
+farxiga,pan-hf,when HF fund open
+farxiga,healthwell-cv,when CV fund open
+verquvo,verquvo-copay,commercial only
+verquvo,merck-helps,primary Medicare route for Verquvo
+verquvo,pan-hf,when HF fund open
+eliquis,eliquis-copay,commercial only
+eliquis,bms-paf,primary Medicare route for Eliquis
+eliquis,healthwell-cv,check fund indication coverage
+xarelto,xarelto-copay,commercial only
+xarelto,jj-paf,primary Medicare route for Xarelto
+xarelto,healthwell-cv,check fund indication coverage
+carvedilol,costplus,cash generic
+carvedilol,goodrx,cash generic
+carvedilol,lis-extrahelp,if income qualifies
+metoprolol-succ,costplus,cash generic
+metoprolol-succ,goodrx,cash generic
+metoprolol-succ,lis-extrahelp,if income qualifies
+bisoprolol,costplus,cash generic
+bisoprolol,goodrx,cash generic
+bisoprolol,lis-extrahelp,if income qualifies
+spironolactone,costplus,cash generic
+spironolactone,goodrx,cash generic
+spironolactone,lis-extrahelp,if income qualifies
+eplerenone,costplus,cash generic; pricier than spironolactone
+eplerenone,goodrx,cash generic
+eplerenone,lis-extrahelp,if income qualifies
+furosemide,costplus,cash generic
+furosemide,goodrx,cash generic
+furosemide,lis-extrahelp,if income qualifies
+torsemide,costplus,cash generic
+torsemide,goodrx,cash generic
+torsemide,lis-extrahelp,if income qualifies
+lisinopril,costplus,cash generic
+lisinopril,goodrx,cash generic
+lisinopril,lis-extrahelp,if income qualifies
+losartan,costplus,cash generic
+losartan,goodrx,cash generic
+losartan,lis-extrahelp,if income qualifies
+entresto,lis-extrahelp,if income qualifies
+jardiance,lis-extrahelp,if income qualifies
+farxiga,lis-extrahelp,if income qualifies
+verquvo,lis-extrahelp,if income qualifies
+eliquis,lis-extrahelp,if income qualifies
+xarelto,lis-extrahelp,if income qualifies
