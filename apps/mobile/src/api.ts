@@ -5,6 +5,7 @@ import type {
   EncounterDetail,
   HealthResponse,
   Patient,
+  Visit,
 } from "@abridge/shared";
 
 // On a physical iPhone via Expo Go, "localhost" points at the phone, not your
@@ -22,6 +23,7 @@ export const api = {
 
   listClinicians: () => fetch(`${API_URL}/clinicians`).then(json<Clinician[]>),
   listPatients: () => fetch(`${API_URL}/patients`).then(json<Patient[]>),
+  listVisits: () => fetch(`${API_URL}/visits`).then(json<Visit[]>),
 
   listEncounters: () => fetch(`${API_URL}/encounters`).then(json<Encounter[]>),
   getEncounter: (id: string) =>

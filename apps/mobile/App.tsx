@@ -22,10 +22,18 @@ import type {
   EncounterSetting,
   EncounterStatus,
   Patient,
+  Visit,
 } from "@abridge/shared";
 import { api } from "./src/api";
 
-const SETTINGS: EncounterSetting[] = ["ED", "INPATIENT", "HOME"];
+const SETTINGS: EncounterSetting[] = ["ED", "INPATIENT", "HOME", "CARE_CONFERENCE"];
+
+const SETTING_LABEL: Record<EncounterSetting, string> = {
+  ED: "ED",
+  INPATIENT: "Inpatient",
+  HOME: "Home",
+  CARE_CONFERENCE: "Care conference (rounds)",
+};
 
 const STATUS_COLOR: Record<EncounterStatus, string> = {
   recording: "#b45309",
@@ -39,10 +47,12 @@ export default function App() {
   const [health, setHealth] = useState("checking…");
   const [clinicians, setClinicians] = useState<Clinician[]>([]);
   const [patients, setPatients] = useState<Patient[]>([]);
+  const [visits, setVisits] = useState<Visit[]>([]);
   const [encounters, setEncounters] = useState<Encounter[]>([]);
 
   const [clinicianId, setClinicianId] = useState<string>();
   const [patientId, setPatientId] = useState<string>();
+  const [visitId, setVisitId] = useState<string>();
   const [setting, setSetting] = useState<EncounterSetting>("ED");
 
   const [busy, setBusy] = useState(false); // creating / uploading / polling
@@ -61,6 +71,7 @@ export default function App() {
       setClinicianId((id) => id ?? c[0]?.id);
     });
     api.listPatients().then(setPatients).catch(() => {});
+    api.listVisits().then(setVisits).catch(() => {});
     refreshEncounters();
   }, []);
 
@@ -69,8 +80,21 @@ export default function App() {
   }
 
   async function startRecording() {
-    if (!clinicianId || !patientId) {
-      Alert.alert("Pick a clinician and patient first");
+    const isRounds = setting === "CARE_CONFERENCE";
+    // A rounds meeting is about a specific stay — its patient comes from the visit.
+    const roundsVisit = visits.find((v) => v.id === visitId);
+    const effectivePatientId = isRounds ? roundsVisit?.patient.id : patientId;
+
+    if (!clinicianId) {
+      Alert.alert("Pick a clinician first");
+      return;
+    }
+    if (isRounds && !roundsVisit) {
+      Alert.alert("Pick the visit these rounds are about");
+      return;
+    }
+    if (!effectivePatientId) {
+      Alert.alert("Pick a patient first");
       return;
     }
     const perm = await AudioModule.requestRecordingPermissionsAsync();
@@ -81,9 +105,10 @@ export default function App() {
     setBusy(true);
     try {
       const enc = await api.createEncounter({
-        patient_id: patientId,
+        patient_id: effectivePatientId,
         clinician_id: clinicianId,
         setting,
+        visit_id: isRounds ? visitId : visitId ?? null,
       });
       setActiveId(enc.id);
       await setAudioModeAsync({ playsInSilentMode: true, allowsRecording: true });
@@ -151,19 +176,24 @@ export default function App() {
         ))}
       </View>
 
-      {/* Patient */}
-      <Text style={styles.label}>Patient</Text>
-      <View style={styles.pillRow}>
-        {patients.map((p) => (
-          <Pill
-            key={p.id}
-            text={`${p.display_name} · ${p.mrn}`}
-            active={p.id === patientId}
-            disabled={recording}
-            onPress={() => setPatientId(p.id)}
-          />
-        ))}
-      </View>
+      {/* Patient — bedside encounters only; a rounds meeting gets its patient
+          from the chosen visit, so we don't ask twice. */}
+      {setting !== "CARE_CONFERENCE" && (
+        <>
+          <Text style={styles.label}>Patient</Text>
+          <View style={styles.pillRow}>
+            {patients.map((p) => (
+              <Pill
+                key={p.id}
+                text={`${p.display_name} · ${p.mrn}`}
+                active={p.id === patientId}
+                disabled={recording}
+                onPress={() => setPatientId(p.id)}
+              />
+            ))}
+          </View>
+        </>
+      )}
 
       {/* Setting */}
       <Text style={styles.label}>Setting</Text>
@@ -171,13 +201,31 @@ export default function App() {
         {SETTINGS.map((s) => (
           <Pill
             key={s}
-            text={s}
+            text={SETTING_LABEL[s]}
             active={s === setting}
             disabled={recording}
             onPress={() => setSetting(s)}
           />
         ))}
       </View>
+
+      {/* Visit picker — required for a care-conference (rounds about a stay) */}
+      {setting === "CARE_CONFERENCE" && (
+        <>
+          <Text style={styles.label}>Which patient are these rounds about?</Text>
+          <View style={styles.pillRow}>
+            {visits.map((v) => (
+              <Pill
+                key={v.id}
+                text={`${v.patient.display_name} · ${v.primary_diagnosis}`}
+                active={v.id === visitId}
+                disabled={recording}
+                onPress={() => setVisitId(v.id)}
+              />
+            ))}
+          </View>
+        </>
+      )}
 
       {/* Record control */}
       {!recording ? (
@@ -237,7 +285,7 @@ function EncounterRow({ encounter }: { encounter: Encounter }) {
         </Text>
       </View>
       <Text style={styles.cardMeta}>
-        {encounter.setting} · {encounter.clinician.name} ·{" "}
+        {SETTING_LABEL[encounter.setting]} · {encounter.clinician.name} ·{" "}
         {new Date(encounter.started_at).toLocaleTimeString()}
       </Text>
       {open && transcript !== null && (
