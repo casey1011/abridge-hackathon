@@ -15,3 +15,7 @@ class Item(BaseModel):
 
 class CreateItemRequest(BaseModel):
     title: str
+
+
+class TranscriptResponse(BaseModel):
+    text: str

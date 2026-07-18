@@ -6,10 +6,11 @@ Docs: http://localhost:8000/docs
 from datetime import datetime, timezone
 from uuid import uuid4
 
-from fastapi import FastAPI
+from fastapi import FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 
-from .schemas import CreateItemRequest, HealthResponse, Item
+from .schemas import CreateItemRequest, HealthResponse, Item, TranscriptResponse
+from .transcription import transcribe
 
 app = FastAPI(title="Abridge API")
 
@@ -44,3 +45,11 @@ def create_item(body: CreateItemRequest) -> Item:
     )
     _items.append(item)
     return item
+
+
+@app.post("/transcribe", response_model=TranscriptResponse)
+async def transcribe_audio(file: UploadFile = File(...)) -> TranscriptResponse:
+    """Bedside audio -> text via Groq Whisper."""
+    audio = await file.read()
+    text = transcribe(audio, filename=file.filename or "audio.wav")
+    return TranscriptResponse(text=text.strip())
